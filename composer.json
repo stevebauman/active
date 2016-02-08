@@ -1,0 +1,47 @@
+{
+    "name": "stevebauman/active",
+    "type": "package",
+    "description": "An Active link helper for outputting classes for the users current route.",
+    "keywords": [
+        "active",
+        "output",
+        "links"
+    ],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/stevebauman/active/issues",
+        "source": "https://github.com/stevebauman/active"
+    },
+    "authors": [
+        {
+            "name": "Steve Bauman",
+            "email": "steven_bauman@outlook.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "~5.1",
+        "ext-ldap": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.6.*",
+        "mockery/mockery": "0.9.*"
+    },
+    "archive": {
+        "exclude": ["/tests"]
+    },
+    "autoload": {
+        "psr-4": {
+            "Stevebauman\\Active\\": "src/"
+        },
+        "files": [
+          "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Stevebauman\\Active\\Tests\\": "tests/"
+        }
+    }
+}
