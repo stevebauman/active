@@ -3,9 +3,9 @@
 namespace Stevebauman\Active\Tests;
 
 use Mockery;
-use Orchestra\Testing\ApplicationTestCase;
+use Orchestra\Testbench\TestCase as FunctionalTestCase;
 
-abstract class TestCase extends ApplicationTestCase
+abstract class TestCase extends FunctionalTestCase
 {
     /**
      * Base application namespace.
