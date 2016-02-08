@@ -35,7 +35,11 @@ Output on active routes or route:
 
 ```html
 <!-- `active` will be displayed when you visit `products/index` -->
-<a class="btn btn-success {{ active()->route('products.index') }}" href="{{ route('products.index') }}">Products</a>
+<a
+    class="btn btn-success {{ active()->route('products.index') }}"
+    href="{{ route('products.index') }}">
+        Products
+</a>
 ```
 
 ```html
@@ -53,7 +57,11 @@ For example:
 
 ```html
 <!-- `active` will be displayed when you visit any route below `products.` -->
-<a class="btn btn-success {{ active()->route('products.*') }}" href="{{ route('products.index') }}">Products</a>
+<a
+    class="btn btn-success {{ active()->route('products.*') }}"
+    href="{{ route('products.index') }}">
+        Products
+</a>
 ```
 
 ```html
