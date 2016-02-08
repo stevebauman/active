@@ -45,6 +45,9 @@ class Active
     {
         $this->setRequest($request);
         $this->setRoute($route);
+
+        // Set the default output class.
+        $this->output = config('active.output', 'active');
     }
 
     /**
