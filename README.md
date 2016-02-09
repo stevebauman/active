@@ -71,3 +71,15 @@ For example:
         Products
 </a>
 ```
+
+### Setting a different output
+
+To set a different output, use the `output()` method:
+
+```php
+<a
+    class="btn btn-success {{ active()->output('my-active-class')->route('products.*') }}"
+    href="{{ route('products.index') }}">
+        Products
+</a>
+```
