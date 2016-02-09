@@ -55,6 +55,6 @@ abstract class TestCase extends FunctionalTestCase
      */
     protected function getPackageAliases($app)
     {
-        //
+        return [];
     }
 }
