@@ -1,5 +1,5 @@
 # Active
-An active HTML class helper that echo's strings based on the current route
+An active HTML class helper that echo's strings based on the current route.
 
 [![Build Status](https://img.shields.io/travis/stevebauman/active.svg?style=flat-square)](https://travis-ci.org/stevebauman/active)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/stevebauman/active/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/stevebauman/active/?branch=master)
