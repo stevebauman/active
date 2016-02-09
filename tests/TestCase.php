@@ -4,23 +4,11 @@ namespace Stevebauman\Active\Tests;
 
 use Mockery;
 use Orchestra\Testbench\TestCase as FunctionalTestCase;
+use Stevebauman\Active\ActiveServiceProvider;
+use Stevebauman\Active\Facades\Active;
 
 abstract class TestCase extends FunctionalTestCase
 {
-    /**
-     * Base application namespace.
-     *
-     * @var string
-     */
-    protected $baseNamespace = 'Stevebauman\\Active';
-
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
-
     /**
      * Returns a new class mock.
      *
@@ -34,16 +22,6 @@ abstract class TestCase extends FunctionalTestCase
     }
 
     /**
-     * Get base path.
-     *
-     * @return string
-     */
-    protected function getBasePath()
-    {
-        return realpath(__DIR__.'/../');
-    }
-
-    /**
      * Define environment setup.
      *
      * @param \Illuminate\Foundation\Application $app
@@ -53,5 +31,33 @@ abstract class TestCase extends FunctionalTestCase
     protected function getEnvironmentSetUp($app)
     {
         //
+    }
+
+    /**
+     * The active providers.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return array
+     */
+    protected function getPackageProviders($app)
+    {
+        return [
+            ActiveServiceProvider::class,
+        ];
+    }
+
+    /**
+     * The active aliases.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return array
+     */
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Active' => Active::class,
+        ];
     }
 }
