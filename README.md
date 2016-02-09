@@ -45,7 +45,7 @@ Output on active routes or route:
 ```html
 <!-- `active` will be displayed when you visit `products/index` or `products/create` -->
 <a
-    class="btn btn-success {{ active()->route(['products.index', 'products.create']) }}"
+    class="btn btn-success {{ active()->routes(['products.index', 'products.create']) }}"
     href="{{ route('products.index') }}">
         Products
 </a>
@@ -67,7 +67,7 @@ For example:
 ```html
 <!-- `active` will be displayed when you visit any route below `products.`, or `suppliers.` -->
 <a
-    class="btn btn-success {{ active()->route(['products.*', 'suppliers.*']) }}"
+    class="btn btn-success {{ active()->routes(['products.*', 'suppliers.*']) }}"
     href="{{ route('products.index') }}">
         Products
 </a>
