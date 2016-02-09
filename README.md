@@ -25,8 +25,7 @@ Run `composer update`, and you're all set!
 
 ## Usage
 
-This documentation will use the `active()` helper, however you can replace it with `(new Stevebauman\Active\Active())`
-if you'd prefer not to use the helper.
+This documentation will use the `active()` helper.
 
 The default output class is `active`, which is the standard bootstrap class for displaying buttons and links in a different
 color if they match the current URL. 
