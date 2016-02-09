@@ -5,7 +5,6 @@ namespace Stevebauman\Active\Tests;
 use Mockery;
 use Orchestra\Testbench\TestCase as FunctionalTestCase;
 use Stevebauman\Active\ActiveServiceProvider;
-use Stevebauman\Active\Facades\Active;
 
 abstract class TestCase extends FunctionalTestCase
 {
@@ -56,8 +55,6 @@ abstract class TestCase extends FunctionalTestCase
      */
     protected function getPackageAliases($app)
     {
-        return [
-            'Active' => Active::class,
-        ];
+        //
     }
 }
