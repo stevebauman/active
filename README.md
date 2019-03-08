@@ -1,4 +1,5 @@
 # Active
+
 An active HTML class helper that echo's strings based on the current route.
 
 [![Build Status](https://img.shields.io/travis/stevebauman/active.svg?style=flat-square)](https://travis-ci.org/stevebauman/active)
@@ -6,6 +7,14 @@ An active HTML class helper that echo's strings based on the current route.
 [![Total Downloads](https://img.shields.io/packagist/dt/stevebauman/active.svg?style=flat-square)](https://packagist.org/packages/stevebauman/active)
 [![Latest Stable Version](https://img.shields.io/packagist/v/stevebauman/active.svg?style=flat-square)](https://packagist.org/packages/stevebauman/active)
 [![License](https://img.shields.io/packagist/l/stevebauman/active.svg?style=flat-square)](https://packagist.org/stevebauman/active)
+
+## 🚨 Abandoned 🚨
+
+This package has been abandoned in favor or Laravel's now default implementation `request()->routeIs($pattern)` method.
+
+The above method now exists for any Laravel application that is version 5.4 or greater.
+
+This repository will still remain up on both Packagist and GitHub.
 
 ## Installation
 
