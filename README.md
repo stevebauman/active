@@ -42,7 +42,7 @@ color if they match the current URL.
 Output on active routes or route:
 
 ```html
-<!-- `active` will be displayed when you visit `products/index` -->
+<!-- `active` will be displayed when you visit `products/` -->
 <a
     class="btn btn-success {{ active()->route('products.index') }}"
     href="{{ route('products.index') }}">
@@ -51,7 +51,7 @@ Output on active routes or route:
 ```
 
 ```html
-<!-- `active` will be displayed when you visit `products/index` or `products/create` -->
+<!-- `active` will be displayed when you visit `products/` or `products/create` -->
 <a
     class="btn btn-success {{ active()->routes(['products.index', 'products.create']) }}"
     href="{{ route('products.index') }}">
