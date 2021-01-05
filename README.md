@@ -10,7 +10,11 @@ An active HTML class helper that echo's strings based on the current route.
 
 ## 🚨 Abandoned 🚨
 
-This package has been abandoned in favor or Laravel's now default implementation `request()->routeIs($pattern)` method.
+This package has been abandoned in favor or Laravel's now default implementation:
+
+```php
+request()->routeIs($pattern);
+```
 
 The above method now exists for any Laravel application that is version 5.4 or greater.
 
