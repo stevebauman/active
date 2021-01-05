@@ -20,12 +20,12 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "~5.1"
+        "php": ">=7.0",
+        "illuminate/support": "*"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.2",
-        "mockery/mockery": "0.9.*"
+        "orchestra/testbench": "*",
+        "mockery/mockery": "*"
     },
     "archive": {
         "exclude": ["/tests"]
