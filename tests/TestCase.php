@@ -2,36 +2,11 @@
 
 namespace Stevebauman\Active\Tests;
 
-use Mockery;
-use Orchestra\Testbench\TestCase as FunctionalTestCase;
 use Stevebauman\Active\ActiveServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
-abstract class TestCase extends FunctionalTestCase
+abstract class TestCase extends BaseTestCase
 {
-    /**
-     * Returns a new class mock.
-     *
-     * @param string $class
-     *
-     * @return Mockery\MockInterface
-     */
-    public function mock($class)
-    {
-        return Mockery::mock($class);
-    }
-
-    /**
-     * Define environment setup.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return void
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        //
-    }
-
     /**
      * The active providers.
      *
@@ -41,20 +16,6 @@ abstract class TestCase extends FunctionalTestCase
      */
     protected function getPackageProviders($app)
     {
-        return [
-            ActiveServiceProvider::class,
-        ];
-    }
-
-    /**
-     * The active aliases.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageAliases($app)
-    {
-        return [];
+        return [ActiveServiceProvider::class];
     }
 }

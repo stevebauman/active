@@ -2,18 +2,19 @@
 
 namespace Stevebauman\Active\Tests;
 
-use Stevebauman\Active\Active;
+use Mockery as m;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Stevebauman\Active\Active;
 
 class ActiveTest extends TestCase
 {
     protected function newActive()
     {
-        $request = $this->mock(Request::class);
-        $route = $this->mock(Route::class);
-
-        return new Active($request, $route);
+        return new Active(
+            m::mock(Request::class),
+            m::mock(Route::class)
+        );
     }
 
     public function test_with_current_route()
