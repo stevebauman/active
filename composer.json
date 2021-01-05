@@ -42,5 +42,12 @@
         "psr-4": {
             "Stevebauman\\Active\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Stevebauman\\Active\\ActiveServiceProvider"
+            ]
+        }
     }
 }
