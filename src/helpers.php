@@ -2,15 +2,19 @@
 
 use Stevebauman\Active\Active;
 
-/**
- * Generates a new Active instance.
- *
- * @return Active
- */
-function active()
-{
-    $request = request();
-    $route = $request->route();
+if (! function_exists('active')) {
+    /**
+     * Generates a new Active instance.
+     *
+     * @return Active
+     */
+    function active()
+    {
+        $request = request();
+        $route = $request->route();
 
-    return new Active($request, $route);
+        return (new Active($request, $route))->output(
+            config('active.output', 'active')
+        );
+    }
 }
