@@ -7,17 +7,20 @@ use Illuminate\Support\ServiceProvider;
 class ActiveServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider dependencies.
+     * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
-        $auth = __DIR__.'/Config/config.php';
+        $config = __DIR__.'/../config/config.php';
 
-        // Add publishable configuration.
-        $this->publishes([
-            $auth => config_path('active.php'),
-        ], 'active');
+       if ($this->app->runningInConsole()) {
+           $this->publishes([
+               $config => config_path('active.php'),
+           ], 'active');
+       }
 
-        $this->mergeConfigFrom($auth, 'active');
+        $this->mergeConfigFrom($config, 'active');
     }
 }
