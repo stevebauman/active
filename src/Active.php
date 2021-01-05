@@ -2,6 +2,7 @@
 
 namespace Stevebauman\Active;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -24,16 +25,31 @@ class Active
     /**
      * The current route.
      *
-     * @var \Illuminate\Routing\Route
+     * @var Route
      */
     protected $route;
 
     /**
      * The current request.
      *
-     * @var \Illuminate\Http\Request
+     * @var Request
      */
     protected $request;
+
+    /**
+     * The default resource route path names.
+     *
+     * @var array
+     */
+    protected $defaultResourcePaths = [
+        'index',
+        'create',
+        'store',
+        'show',
+        'edit',
+        'update',
+        'destroy',
+    ];
 
     /**
      * Constructor.
@@ -43,16 +59,12 @@ class Active
      */
     public function __construct(Request $request, Route $route)
     {
-        $this->setRequest($request);
-        $this->setRoute($route);
-
-        // Set the default output class.
-        $this->output = config('active.output', 'active');
+        $this->request = $request;
+        $this->route = $route;
     }
 
     /**
-     * Returns the output if the specified route
-     * is the current route.
+     * Return the output if the route is active.
      *
      * @param string $route
      *
@@ -63,18 +75,13 @@ class Active
         $current = $this->route->getName();
 
         if ($this->containsWildcard($route)) {
-            // If the specified route contains a wildcard we'll remove it.
             $route = $this->stripWildcard($route);
 
-            if (str_contains($current, $route)) {
-                // We'll check if the stripped route exists inside the current
-                // route and return the output if that is the case.
+            if (Str::contains($current, $route)) {
                 return $this->output;
             }
         }
 
-        // If the route does not contain a wildcard we'll check if the
-        // current route equals the specified route loosely.
         if ($current == $route) {
             return $this->output;
         }
@@ -83,8 +90,7 @@ class Active
     }
 
     /**
-     * Returns the output if the specified resource name is
-     * currently active in one of it's child routes.
+     * Return the output if the resource is active.
      *
      * @param string $name
      * @param array  $paths
@@ -93,20 +99,12 @@ class Active
      */
     public function resource($name = '', array $paths = [])
     {
-        if (!ends_with($name, '.')) {
+        if (! Str::endsWith($name, '.')) {
             $name = $name.'.';
         }
 
-        if (count($paths) === 0) {
-            $paths = [
-                'index',
-                'create',
-                'store',
-                'show',
-                'edit',
-                'update',
-                'destroy',
-            ];
+        if (empty($paths)) {
+            $paths = $this->defaultResourcePaths;
         }
 
         $routes = array_map(function ($key) use ($name) {
@@ -117,8 +115,7 @@ class Active
     }
 
     /**
-     * Returns the output if the current request
-     * contains the specified key.
+     * Return the output if the requests input is set or contains a value.
      *
      * @param string      $key
      * @param string|null $value
@@ -127,20 +124,19 @@ class Active
      */
     public function input($key = '', $value = null)
     {
-        if ($this->request->has($key)) {
-            if (is_null($value)) {
-                return $this->output;
-            } elseif ($this->request->input($key) == $value) {
-                return $this->output;
-            }
+        if (! $this->request->has($key)) {
+            return;
         }
 
-        return;
+        if (is_null($value)) {
+            return $this->output;
+        } elseif ($this->request->input($key) == $value) {
+            return $this->output;
+        }
     }
 
     /**
-     * Returns the output if one of the specified
-     * routes are the current route.
+     * Return the output if one of the given routes are active.
      *
      * @param array $routes
      *
@@ -149,9 +145,7 @@ class Active
     public function routes(array $routes = [])
     {
         foreach ($routes as $route) {
-            $output = $this->route($route);
-
-            if ($output) {
+            if ($output = $this->route($route)) {
                 return $output;
             }
         }
@@ -160,7 +154,7 @@ class Active
     }
 
     /**
-     * Sets the output class string.
+     * Set the output string.
      *
      * @param string $output
      *
@@ -174,8 +168,7 @@ class Active
     }
 
     /**
-     * Returns true / false if the specified
-     * string contains a wildcard.
+     * Determine if the string contains a wildcard.
      *
      * @param string $string
      *
@@ -183,11 +176,11 @@ class Active
      */
     protected function containsWildcard($string)
     {
-        return str_contains($string, $this->wildcard);
+        return Str::contains($string, $this->wildcard);
     }
 
     /**
-     * Removes the wildcard from the specified string.
+     * Remove the wildcard from the specified string.
      *
      * @param string $string
      *
@@ -199,7 +192,7 @@ class Active
     }
 
     /**
-     * Returns the current route.
+     * Get the current route.
      *
      * @return Route
      */
@@ -209,7 +202,7 @@ class Active
     }
 
     /**
-     * Sets the current route name.
+     * Set the current route name.
      *
      * @param Route $route
      *
@@ -223,7 +216,7 @@ class Active
     }
 
     /**
-     * Returns the current request.
+     * Get the current request.
      *
      * @return Request
      */
@@ -233,7 +226,7 @@ class Active
     }
 
     /**
-     * Sets the current request.
+     * Set the current request.
      *
      * @param Request $request
      *
